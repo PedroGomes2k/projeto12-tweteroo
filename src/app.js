@@ -21,7 +21,7 @@ app.post('/sign-up', (req, res) => {
 
     user.push({ username, avatar })
 
-    res.send("OK")
+    res.status(201).send("OK")
 })
 
 app.post('/tweets', (req, res) => {
@@ -35,15 +35,14 @@ app.post('/tweets', (req, res) => {
     const verify = user.find((u) => u.username === username)
 
     if (!verify) {
-        return res.send('UNAUTHORIZED')
-
+        return res.status(401).send('UNAUTHORIZED')
     }
 
     tweets.push({ username, tweet })
 
 
 
-    res.send("OK")
+    res.status(201).send("OK")
 })
 
 app.get('/tweets', (req, res) => {
